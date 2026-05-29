@@ -21,7 +21,7 @@
 ╚██████╔╝███████║██║ ╚═╝ ██║██║  ██║██║ ╚████║
  ╚═════╝ ╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
 
-                    [ v2025.NAIROBI ]
+                    [ NAIROBI ]
 ```
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Space+Mono&size=16&duration=3000&pause=800&color=A78BFA&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=80&lines=Full-Stack+Developer+%E2%80%A2+Creative+Technologist;Building+world-class+digital+experiences+%F0%9F%9A%80)](https://git.io/typing-svg)
@@ -116,8 +116,7 @@ philosophy:  Design should feel expensive.
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  🚀  AI-powered website systems         [IN PROGRESS]       │
-│  🌊  Smart water delivery platform      [IN PROGRESS]       │
-│  🏢  Real estate immersive media        [IN PROGRESS]       │
+│  🌊  Smart water delivery platform      [IN PROGRESS]       │   │
 │  🧠  Advanced dashboard architectures  [IN PROGRESS]       │
 │  ⚡  Modern SaaS-style client systems   [IN PROGRESS]       │
 │  🎨  Premium UI motion systems (GSAP)   [IN PROGRESS]       │
@@ -135,7 +134,7 @@ philosophy:  Design should feel expensive.
 
 > 📸 Professional Photography &nbsp;·&nbsp; 🎬 Cinematic Video Editing &nbsp;·&nbsp; 🚁 Drone Content Production
 >
-> 🏠 Real Estate Digital Marketing &nbsp;·&nbsp; 🌍 360° Virtual Tours &nbsp;·&nbsp; 🎥 YouTube Content Production
+> 🎥 YouTube Content Production
 >
 > ✨ Premium Brand Identity Systems
 
