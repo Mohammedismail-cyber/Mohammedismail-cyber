@@ -1,26 +1,188 @@
-<div align="center">
 
-```
-'##::::'##::'#######::'##::::'##::::'###::::'##::::'##:'##::::'##:'########:'##:::::::
- ###::'###:'##.... ##: ##:::: ##:::'## ##::: ###::'###: ###::'###: ##.....::: ##:::::::
- ####'####: ##:::: ##: ##:::: ##::'##:. ##:: ####'####: ####'####: ##:::::::: ##:::::::
- ## ### ##: ##:::: ##: #########:'##:::. ##: ## ### ##: ## ### ##: ######:::: ##:::::::
- ##. #: ##: ##:::: ##: ##.... ##: #########: ##. #: ##: ##. #: ##: ##...::::: ##:::::::
- ##:.:: ##: ##:::: ##: ##:::: ##: ##.... ##: ##:.:: ##: ##:.:: ##: ##:::::::: ##:::::::
- ##:::: ##:. #######:: ##:::: ##: ##:::: ##: ##:::: ##: ##:::: ##: ########:: ########:
-..:::::..:::.......:::..:::::..::..:::::..::..:::::..::..:::::..::........:::........::
 
-:'#######:::'######::'##::::'##::::'###::::'##::: ##:
-'##.... ##:'##... ##: ###::'###:::'## ##::: ###:: ##:
- ##:::: ##: ##:::..:: ####'####::'##:. ##:: ####: ##:
- ##:::: ##:. ######:: ## ### ##:'##:::. ##: ## ## ##:
- ##:::: ##::..... ##: ##. #: ##: #########: ##. ####:
- ##:::: ##:'##::: ##: ##:.:: ##: ##.... ##: ##:. ###:
-. #######::. ######:: ##:::: ##: ##:::: ##: ##::. ##:
-:.......::::......:::..:::::..::..:::::..::..::::..:
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 
-                    [ v2025.NAIROBI ]
-```
+  .pixel-wrap {
+    background: #0d0d12;
+    padding: 40px 24px 36px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .pixel-word {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .pixel-word + .pixel-word {
+    margin-top: 10px;
+  }
+
+  .pixel-letter {
+    display: grid;
+    gap: 3px;
+  }
+
+  .px {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+  }
+
+  .px.on {
+    background: #a78bfa;
+    box-shadow: inset 0 0 0 1.5px #7c3aed;
+  }
+
+  .px.off {
+    background: transparent;
+  }
+
+  .tagline {
+    margin-top: 22px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: #6d5fa8;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .version-badge {
+    margin-top: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #4c1d95;
+    background: #1e1533;
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid #3b0764;
+    letter-spacing: 0.15em;
+  }
+</style>
+
+<div class="pixel-wrap">
+
+<script>
+const FONT = {
+  M: [
+    [1,0,0,0,1],
+    [1,1,0,1,1],
+    [1,0,1,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+  ],
+  O: [
+    [0,1,1,1,0],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [0,1,1,1,0],
+  ],
+  H: [
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,1,1,1,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+  ],
+  A: [
+    [0,1,1,1,0],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,1,1,1,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+  ],
+  E: [
+    [1,1,1,1,1],
+    [1,0,0,0,0],
+    [1,0,0,0,0],
+    [1,1,1,1,0],
+    [1,0,0,0,0],
+    [1,0,0,0,0],
+    [1,1,1,1,1],
+  ],
+  D: [
+    [1,1,1,0,0],
+    [1,0,0,1,0],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,1,0],
+    [1,1,1,0,0],
+  ],
+  S: [
+    [0,1,1,1,1],
+    [1,0,0,0,0],
+    [1,0,0,0,0],
+    [0,1,1,1,0],
+    [0,0,0,0,1],
+    [0,0,0,0,1],
+    [1,1,1,1,0],
+  ],
+  N: [
+    [1,0,0,0,1],
+    [1,1,0,0,1],
+    [1,0,1,0,1],
+    [1,0,0,1,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+    [1,0,0,0,1],
+  ],
+};
+
+function renderWord(letters) {
+  const wrap = document.createElement('div');
+  wrap.className = 'pixel-word';
+  for (const ch of letters) {
+    const grid = FONT[ch];
+    const letterDiv = document.createElement('div');
+    letterDiv.className = 'pixel-letter';
+    letterDiv.style.gridTemplateColumns = `repeat(${grid[0].length}, 14px)`;
+    letterDiv.style.gridTemplateRows = `repeat(${grid.length}, 14px)`;
+    for (const row of grid) {
+      for (const cell of row) {
+        const px = document.createElement('div');
+        px.className = 'px ' + (cell ? 'on' : 'off');
+        letterDiv.appendChild(px);
+      }
+    }
+    wrap.appendChild(letterDiv);
+  }
+  return wrap;
+}
+
+const container = document.currentScript.parentElement;
+
+container.appendChild(renderWord(['M','O','H','A','M','M','E','D']));
+container.appendChild(renderWord(['O','S','M','A','N']));
+
+const tag = document.createElement('div');
+tag.className = 'tagline';
+tag.textContent = 'Full-Stack Developer · Creative Technologist';
+container.appendChild(tag);
+
+const badge = document.createElement('div');
+badge.className = 'version-badge';
+badge.textContent = 'v2025.NAIROBI';
+container.appendChild(badge);
+</script>
+
+</div>
+
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Space+Mono&size=16&duration=3000&pause=800&color=63B3FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=80&lines=Full-Stack+Developer+%E2%80%A2+Creative+Technologist;Building+world-class+digital+experiences+%F0%9F%9A%80)](https://git.io/typing-svg)
 
